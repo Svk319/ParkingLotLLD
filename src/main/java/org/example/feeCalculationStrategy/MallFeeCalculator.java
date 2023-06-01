@@ -4,6 +4,7 @@ import org.example.Vehicle.HeavyVehicle;
 import org.example.Vehicle.LightVehicle;
 import org.example.Vehicle.MediumVehicle;
 import org.example.Vehicle.Vehicle;
+import org.example.enums.FlatFeeStrategyConstants;
 import org.example.ticket.ParkingTicket;
 
 import java.util.Date;
@@ -22,11 +23,11 @@ public class MallFeeCalculator implements FeeCalculator{
     }
     public int getFactor(Vehicle v){
         if(v instanceof MediumVehicle)
-            return 20;
+            return FlatFeeStrategyConstants.MediumVehicle.getValue();
         if(v instanceof LightVehicle)
-            return 10;
+            return FlatFeeStrategyConstants.LightVehicle.getValue();
         if(v instanceof HeavyVehicle)
-            return 50;
+            return FlatFeeStrategyConstants.HeavyVehicle.getValue();
 
         return 1;
     }

@@ -50,28 +50,28 @@ public class GenericCalculator implements FeeCalculator {
     }
 
 
-    public int cumulativeFee(TreeSet<CalcElement> temp, long diff) {
+    public int cumulativeFee(TreeSet<CalcElement> feeDetails, long differenceInHours) {
         int fee = 0;
         int prev = 0;
-        for (CalcElement c : temp) {
+        for (CalcElement c : feeDetails) {
             int delta = c.slab - prev;
-            fee += Math.min(delta, diff) * c.value;
-            if (diff > delta) {
-                diff -= delta;
+            fee += Math.min(delta, differenceInHours) * c.value;
+            //System.out.println(fee);
+            if (differenceInHours > delta) {
+                differenceInHours -= delta;
                 prev = c.slab;
             } else {
                 break;
             }
         }
-        if (diff != 0) {
-            int quot= (int) (diff / temp.first().slab);
-            int rem=(int) (diff % temp.first().slab);
-            if(rem!=0)
-                quot+=1;
+        /*if (differenceInHours != 0) {
+            int quot= (int) Math.ceilDiv (differenceInHours ,feeDetails.last().slab);
 
-            fee += (quot )* temp.last().value;
+            fee += (differenceInHours )* feeDetails.last().value;
 
         }
+
+         */
         return fee;
     }
 }

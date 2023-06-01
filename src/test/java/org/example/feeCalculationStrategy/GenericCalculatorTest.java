@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
+import static org.junit.Assert.assertEquals;
+
 class GenericCalculatorTest {
 
     TreeSet<CalcElement> set2;
@@ -20,7 +22,7 @@ class GenericCalculatorTest {
         CalcElement cal1=new CalcElement(1,0);
         CalcElement cal2=new CalcElement(8,40);
         CalcElement cal3=new CalcElement(24,60);
-        CalcElement cal4=new CalcElement(24,80);
+        CalcElement cal4=new CalcElement(Integer.MAX_VALUE,80);
         ArrayList<CalcElement> list=new ArrayList<CalcElement>();
         list.add(cal1);
         list.add(cal2);
@@ -39,6 +41,8 @@ class GenericCalculatorTest {
 
     @Test
     void cumulativeFee() {
-        System.out.println(g.cumulativeFee(set2,25));
+
+        //System.out.println(g.cumulativeFee(set2,25));
+        assertEquals(1320,g.cumulativeFee(set2,25));
     }
 }
