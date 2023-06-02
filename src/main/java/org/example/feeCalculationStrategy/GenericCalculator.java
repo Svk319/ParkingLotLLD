@@ -14,9 +14,6 @@ import java.util.TreeSet;
 import static org.example.enums.VehicleType.MOTORCYCLE;
 
 public class GenericCalculator implements FeeCalculator {
-    public TreeSet<CalcElement> set1;
-    public TreeSet<CalcElement> set2;
-
     public HashMap<String, TreeSet<CalcElement>> map = new HashMap<String, TreeSet<CalcElement>>();
 
     public void init(List<List<CalcElement>> list, List<String> vehicleList) {

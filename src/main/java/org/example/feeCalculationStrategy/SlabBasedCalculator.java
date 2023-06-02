@@ -1,11 +1,9 @@
 package org.example.feeCalculationStrategy;
 
+import org.example.enums.VehicleClasses;
 import org.example.ticket.ParkingTicket;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.TreeSet;
+import java.util.*;
 
 /*
 One must make sure that the fee slabs are continuous in nature and no two feeslabs must overlap with each other.
@@ -17,7 +15,10 @@ For the very last slab the value of endHour attribute will be Long.MAX_VALUE.
 public class SlabBasedCalculator implements FeeCalculator{
 
     TreeSet<FeeSlab> slabSet;
-
+    public HashMap<VehicleClasses, TreeSet<FeeSlab>> map = new HashMap<VehicleClasses, TreeSet<FeeSlab>>();
+    public void init(HashMap<VehicleClasses, TreeSet<FeeSlab>> map) {
+        this.map=map;
+    }
     public SlabBasedCalculator(List<FeeSlab> slabs) {
         this.init(slabs);
     }
@@ -28,6 +29,7 @@ public class SlabBasedCalculator implements FeeCalculator{
         float temp=difference_In_Hours;
         float totalFee=0;
         //System.out.println("Diff in hours "+temp);
+        //for(FeeSlab slab:this.map.get(parkingTicket.vehicle.getClass().getSimpleName())){
         for(FeeSlab slab:this.slabSet){
             float start=slab.getStartHour();
             float end=slab.getEndHour();
